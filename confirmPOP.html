@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Eligibility</title>
+
+    <script>
+        function info() {
+            let age = parseInt(prompt("Enter your age"));  // there are prompt method use for take input from user
+
+            if (age >= 18) {
+                let c = confirm("do you want to submit your value");
+                if(c){
+                    alert("You responce submitted! ");
+                }
+                else{
+                    alert("not submited your responce!")
+                }
+            }
+            else{
+                alert("you are not eligible!")
+            }
+
+        }
+    </script>
+</head>
+<body>
+
+    <input type="button" onclick="info()" value="Result">
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>functions! </title>
+    <script>
+        function F(fn){
+            let Fn = fn;
+            return Fn;
+        }
+        function L(ln){
+            let Fn = ln;
+            return Fn;
+        }
+        function Name(){
+            let firstname = F("Tushar");
+            let lastName = L("Mishra");
+            document.write(firstname+" "+lastName);
+        }
+    </script>
+</head>
+<body>
+    <input type="button" onclick="Name()" value="display">
+    
+</body>
+</html>
