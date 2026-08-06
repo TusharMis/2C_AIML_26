@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>pattern2</title>
+
+    <script>
+        function pattern(){
+            let val = parseInt(prompt("Enter your number "));
+
+            for(let i=1; i<=val; i++){
+
+                for(let j=1; j<=(2*i-1); j++){
+                    document.write("*");
+                }
+
+                document.write("<br>");
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <input type="button" onclick="pattern()" value="display">
+</body>
+</html>

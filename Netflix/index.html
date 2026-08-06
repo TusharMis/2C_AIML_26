@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netflix Clone - Watch TV Shows Online, Watch Movies Online</title>
+    <meta name="description" content="A pixel-perfect, responsive Netflix clone featuring top movies, trending TV shows, interactive hero previews, search, and detailed modal views.">
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header class="navbar" id="navbar">
+        <div class="navbar-left">
+            <!-- Netflix Logo -->
+            <a href="#" class="logo-link" id="logoLink">
+                <svg class="netflix-logo" viewBox="0 0 111 30" aria-label="Netflix">
+                    <path fill="#E50914" d="M105.062 14.28L111 30c-1.75-.25-3.5-.5-5.25-.625L101.438 18l-2.625 11.25c-1.625-.125-3.375-.125-5 0l4.375-18.375L93.75 0h5.625l2.625 11.25L104.625 0h5.5l-5.063 14.28zM76.5 0v30c1.75-.125 3.5-.125 5.25 0V17.5h6.125V13H81.75V4.75h7.25V0H76.5zm-14.875 0l-5.625 18.25L50.375 0h-5.75l8.5 29.375c1.75.125 3.5.25 5.25.5L67.125 0h-5.5zm-17.75 0v30c1.75-.125 3.5-.125 5.25 0V17.5h5.875V13h-5.875V4.75h7.125V0h-12.375zm-16.5 0v30c5.375-.25 10.875 0 16.25.375V25.5c-3.625-.25-7.375-.375-11-.25V17.5h9.875V13h-9.875V4.75h10.875V0h-16.125zM0 30c3.75-.25 7.5-.375 11.25-.25V18.125l5.875 11.75c1.875.125 3.75.375 5.625.625L16.5 17.5 22.25 0h-5.5l-5.5 12.375V0H6v30H0z"/>
+                </svg>
+            </a>
+            
+            <!-- Primary Navigation Links -->
+            <nav class="nav-links">
+                <a href="#" class="nav-item active" data-category="all">Home</a>
+                <a href="#" class="nav-item" data-category="tv">TV Shows</a>
+                <a href="#" class="nav-item" data-category="movies">Movies</a>
+                <a href="#" class="nav-item" data-category="new">New & Popular</a>
+                <a href="#" class="nav-item" data-category="mylist">My List <span class="badge-count" id="myListCount">0</span></a>
+            </nav>
+        </div>
+
+        <div class="navbar-right">
+            <!-- Search Bar -->
+            <div class="search-box" id="searchBox">
+                <button class="search-btn" id="searchBtn" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+                <input type="text" class="search-input" id="searchInput" placeholder="Titles, people, genres..." aria-label="Search Input">
+                <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear Search">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Notifications -->
+            <div class="notification-wrapper">
+                <button class="icon-btn" id="notificationBtn" aria-label="Notifications">
+                    <i class="fa-regular fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="notification-dropdown" id="notificationDropdown">
+                    <div class="notification-header">Latest Releases</div>
+                    <div class="notification-item">
+                        <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=100&auto=format&fit=crop&q=80" alt="Thumb">
+                        <div class="notification-text">
+                            <strong>Cyberpunk 2099</strong>
+                            <span>New Season Out Now</span>
+                            <small>2 hours ago</small>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=100&auto=format&fit=crop&q=80" alt="Thumb">
+                        <div class="notification-text">
+                            <strong>Shadow Horizon</strong>
+                            <span>Trending #1 Movie Today</span>
+                            <small>1 day ago</small>
+                        </div>
+                    </div>
+                    <div class="notification-item">
+                        <img src="https://images.unsplash.com/photo-1578632767115-351597cf2477?w=100&auto=format&fit=crop&q=80" alt="Thumb">
+                        <div class="notification-text">
+                            <strong>Neon Genesis: Legacy</strong>
+                            <span>Added to your notifications</span>
+                            <small>3 days ago</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Profile Avatar & Dropdown -->
+            <div class="profile-wrapper" id="profileWrapper">
+                <div class="profile-trigger" id="profileTrigger">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="User Profile" class="profile-avatar">
+                    <i class="fa-solid fa-caret-down dropdown-arrow"></i>
+                </div>
+                <div class="profile-dropdown" id="profileDropdown">
+                    <div class="profile-list">
+                        <div class="profile-item">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Netflix-avatar.png" alt="Avatar">
+                            <span>Alexander</span>
+                        </div>
+                        <div class="profile-item">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=50&auto=format&fit=crop&q=80" alt="Avatar Kids">
+                            <span>Kids</span>
+                        </div>
+                    </div>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-link"><i class="fa-solid fa-pen"></i> Manage Profiles</a>
+                    <a href="#" class="dropdown-link"><i class="fa-solid fa-user"></i> Account</a>
+                    <a href="#" class="dropdown-link"><i class="fa-regular fa-circle-question"></i> Help Center</a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-link text-center signout-link">Sign Out of Netflix</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+        
+        <!-- Hero Featured Banner Section -->
+        <section class="hero" id="heroSection">
+            <!-- Background Image & Video Overlay -->
+            <div class="hero-bg-container">
+                <img src="" alt="Hero Backdrop" class="hero-bg-img" id="heroBgImg">
+                <video class="hero-video" id="heroVideo" loop muted playsinline></video>
+                <div class="hero-vignette"></div>
+                <div class="hero-bottom-fade"></div>
+            </div>
+
+            <!-- Hero Text Content -->
+            <div class="hero-content">
+                <div class="hero-series-badge">
+                    <span class="n-logo-text">N</span>
+                    <span class="series-label">S E R I E S</span>
+                </div>
+                <h1 class="hero-title" id="heroTitle">Cyberpunk 2099</h1>
+                
+                <div class="hero-meta">
+                    <span class="meta-match" id="heroMatch">98% Match</span>
+                    <span class="meta-year" id="heroYear">2024</span>
+                    <span class="meta-rating" id="heroRating">18+</span>
+                    <span class="meta-duration" id="heroDuration">2 Seasons</span>
+                    <span class="meta-quality">4K Ultra HD</span>
+                </div>
+
+                <p class="hero-synopsis" id="heroSynopsis">
+                    In a neon-drenched metropolis controlled by rogue algorithms, an exiled netrunner uncovers a hidden conspiracy that threatens humanity's digital consciousness.
+                </p>
+
+                <div class="hero-actions">
+                    <button class="btn btn-play" id="heroPlayBtn">
+                        <i class="fa-solid fa-play"></i> Play
+                    </button>
+                    <button class="btn btn-info" id="heroInfoBtn">
+                        <i class="fa-solid fa-circle-info"></i> More Info
+                    </button>
+                    <button class="btn-sound" id="heroSoundBtn" aria-label="Toggle Sound">
+                        <i class="fa-solid fa-volume-xmark" id="heroSoundIcon"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Search Results Grid (Hidden by default) -->
+        <section class="search-results-container hidden" id="searchResultsSection">
+            <h2 class="section-heading">Search Results for "<span id="searchQueryLabel"></span>"</h2>
+            <div class="search-grid" id="searchGrid"></div>
+            <div class="no-results hidden" id="noResultsMsg">
+                <i class="fa-solid fa-film"></i>
+                <p>No movies or TV shows found matching your search.</p>
+            </div>
+        </section>
+
+        <!-- Content Rows Section -->
+        <div class="rows-container" id="rowsContainer">
+            <!-- Dynamic rows will be inserted here by JavaScript -->
+        </div>
+
+    </main>
+
+    <!-- Interactive "More Info" Modal Window -->
+    <div class="modal-overlay hidden" id="infoModal">
+        <div class="modal-card">
+            <button class="modal-close-btn" id="modalCloseBtn" aria-label="Close Modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            
+            <!-- Modal Header Banner -->
+            <div class="modal-hero">
+                <img src="" alt="Modal Backdrop" class="modal-bg-img" id="modalBgImg">
+                <video class="modal-video" id="modalVideo" loop muted playsinline></video>
+                <div class="modal-hero-fade"></div>
+                <div class="modal-hero-content">
+                    <h2 class="modal-title" id="modalTitle">Title</h2>
+                    <div class="modal-actions">
+                        <button class="btn btn-play" id="modalPlayBtn">
+                            <i class="fa-solid fa-play"></i> Play
+                        </button>
+                        <button class="btn-icon" id="modalAddListBtn" title="Add to My List">
+                            <i class="fa-solid fa-plus" id="modalAddListIcon"></i>
+                        </button>
+                        <button class="btn-icon" id="modalLikeBtn" title="I like this">
+                            <i class="fa-regular fa-thumbs-up" id="modalLikeIcon"></i>
+                        </button>
+                        <button class="btn-sound modal-sound-btn" id="modalSoundBtn">
+                            <i class="fa-solid fa-volume-xmark" id="modalSoundIcon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Body Details -->
+            <div class="modal-body">
+                <div class="modal-details-grid">
+                    <div class="modal-left">
+                        <div class="modal-meta-row">
+                            <span class="meta-match" id="modalMatch">98% Match</span>
+                            <span class="meta-year" id="modalYear">2024</span>
+                            <span class="meta-rating" id="modalRating">18+</span>
+                            <span class="meta-duration" id="modalDuration">1h 55m</span>
+                            <span class="meta-badge">HD</span>
+                        </div>
+                        <p class="modal-synopsis" id="modalSynopsis">Movie overview description goes here.</p>
+                    </div>
+
+                    <div class="modal-right">
+                        <div class="modal-info-item">
+                            <span class="info-label">Cast:</span>
+                            <span class="info-value" id="modalCast">Actor 1, Actor 2</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="info-label">Genres:</span>
+                            <span class="info-value" id="modalGenres">Sci-Fi, Thriller</span>
+                        </div>
+                        <div class="modal-info-item">
+                            <span class="info-label">This show is:</span>
+                            <span class="info-value" id="modalMood">Mind-bending, Sci-Fi, Action</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Similar Titles Section -->
+                <div class="modal-similar-section">
+                    <h3 class="similar-title-heading">More Like This</h3>
+                    <div class="similar-grid" id="similarGrid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-socials">
+            <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+
+        <ul class="footer-links">
+            <li><a href="#">Audio Description</a></li>
+            <li><a href="#">Help Center</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Media Center</a></li>
+            <li><a href="#">Investor Relations</a></li>
+            <li><a href="#">Jobs</a></li>
+            <li><a href="#">Terms of Use</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Legal Notices</a></li>
+            <li><a href="#">Cookie Preferences</a></li>
+            <li><a href="#">Corporate Information</a></li>
+            <li><a href="#">Contact Us</a></li>
+        </ul>
+
+        <div class="footer-copyright">
+            &copy; 1997-2026 Netflix, Inc. Antigravity Developer Edition.
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
