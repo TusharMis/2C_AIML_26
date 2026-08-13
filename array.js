@@ -1,0 +1,17 @@
+let a = [2,3,4,5,5,6,7];
+a.push(10)
+console.log(a)
+a.pop()
+console.log(a)
+a.concat(2) // how it is work
+console.log(a)
+console.log(a.length)
+a.unshift(4)
+console.log(a)
+a.shift()
+console.log(a)
+a.slice(1,2)
+console.log(a)
+a.splice(2,2)
+console.log(a)
+console.log(a.reverse())
