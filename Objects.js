@@ -8,3 +8,15 @@ student.Learning = function() {
 }
 console.log(student.name);
 student.Learning();
+
+let Student = {
+    name : "Tushar",
+    id : 45, 
+    city : "Chitrakoot",
+    Learning : function(){
+        console.log("Techsub")
+    }
+}
+console.log(Student)
+
+
