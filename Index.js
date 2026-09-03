@@ -1,5 +1,4 @@
 let Product = new  Object();
-
 Product.name = "VIVO";
 Product.id = 452;
 Product.price = 15000;
